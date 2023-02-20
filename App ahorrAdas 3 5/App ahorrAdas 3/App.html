@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style/style.css">
+
+    <title>App ahorrAdas</title>
+</head>
+<body>
+
+    <!--Nav-bar-->
+    <header>
+        <nav class="navbar is-warning is-spaced has-shadow " role="navigation" aria-label="dropdown navigation">
+            <div class="navbar-brand "><!--lateral izq-->
+                <a class="navbar-item" href="./App.html">
+                  <h1 class="title"><i class="fa fa-home">Ahorradas</i></h1>
+                </a> 
+              </div>
+              <div class="navbar-menu">
+                <div class="navbar-end ">
+                    <a class="navbar-item" href="#id-balance"><i class="fa fa-home mr-2">Balance</i></a>
+                    <a class="navbar-item"href="#id-categoria"><i class="fa fa-home mr-2">Categorias</i></a>
+                    <a class="navbar-item"href=""><i class="fa fa-home mr-2">Reportes</i></a>
+                </div>
+              </div>
+        </nav>
+    </header>
+
+    <section class="section mt-5 vista" id="vista-balance">
+    <div class="container">
+      <div class="column is'is-multiline">
+        <!--Container operacion-->
+        <section>
+          <div class="container">
+            <div class="column is-multiline">
+              <div class="">
+                <div class="box">
+                <div class="">
+                  <h2 class="title">Operaciones</h2>
+                  <button class="button is-warning " id="btn-addOperation" >+ Nueva Operacion</button>
+                </div>
+
+                <p id="print"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        
+        <!--Agregar operacion-->
+          <div class="contain-form">
+            <section class="container mb-5">
+                <div class="box">
+                  <h2 class="title mt-5">Nueva operacion</h2>
+                  <div class="field">
+                      <label class="label">Descripción</label>
+                      <div class="control">
+                        <input class="input" type="text" id="input-description">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Monto</label>
+                      <div class="control">
+                        <input class="input" type="number" placeholder="0" id="input-monto">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Tipo</label>
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select id="input-select">
+                            <option value=" ">--Ingrese una opcion--</option>
+                            <option value="Gasto">Gasto</option>
+                            <option value="Ganancia">Ganancia</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Categoria</label>
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select id="cat" name="input-categoria">
+                            <option>Seleccione categoria</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Fecha</label>
+                      <div class="control">
+                        <input class="input" type="date" id="input-date" >
+                      </div>
+                    </div>
+                    <div class="field is-grouped is-grouped-right mt-5">
+                       <div class="control">
+                        <button class="button is-white is-light" id="btn-cancel" >Cancelar</button>
+                      </div>
+                      <div class="control">
+                          <button  type="submit" class="button is-warning" id="btn-submit">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+          </div>
+        
+        <!--Categoria-->
+        <section class="container mb-5" id="id-categoria">
+              <div class="column is-multiline">
+                <div class="box">
+                  <h2 class="title mt-5">Categorias</h2>
+                  <label class="label">Nombre</label>
+                  <div class="field is-grouped ">
+                      <p class="control is-expanded">
+                        <input class="input" type="text" id="input-categoriaAdd">
+                      </p>
+                        <button class="button  is-warning" id="btn-addCategoria">Agregar</button>
+                    </div>
+                    <p id="print-categoria"></p>
+                </div>
+              </div>
+        </section>
+
+
+        <!--Balance y Filtro-->
+          <div class="column">
+        <!--Balance-->
+            <div class="box" id="id-balance">
+              <h2 class="is-title is-size-3 mb-6 has-text-weight-bold">Balance</h2>
+              <div class="columns is-mobile is-vcentered">
+                <div class="column is-size-5">Ganancias</div>
+                <div class="column has-text-right has-text-success" id="ganancias">+$0</div>
+              </div>
+              <div class="columns is-mobile is-vcentered">
+                <div class="column is-size-5">Gastos</div>
+                <div class="column has-text-right has-text-danger" id="gastos">-$0</div>
+              </div>
+              <div class="columns is-mobile is-vcentered">
+                <div class="column is-size-4">Total</div>
+                <div class="column has-text-right has-text-weight-bold has-text" id="balance">$0</div>
+              </div>
+            </div>
+                    
+        <!--Filtros-->
+       
+          <div class="box">
+            <h2 class="is-title is-size-3 mb-6 has-text-weight-bold">Filtros</h2>
+            <div class="field">
+
+              <label for="filtro-tipo" class="label">Tipo</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="input-select">
+                    <option value=" ">Todos</option>
+                    <option value="Gasto">Gasto</option>
+                    <option value="Ganancia">Ganancia</option>
+                  </select>
+                </div>
+              </div>
+
+              <label class="label mt-3">Categoria</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="cat" name="input-categoria">
+                    <option>Seleccione categoria</option>
+                  </select>
+                </div>          
+              </div>
+
+              <label class="label mt-3">Desde</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <input class="input" type="date" id="input-date" >
+                </div>          
+              </div>
+
+              <label for="filtro-ordernar" class="label">Ordenar</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="input-select">
+                    <option value="mas reciente">Mas reciente</option>
+                    <option value="menos reciente">Menos reciente</option>
+                    <option value="mayor monto">Mayor monto</option>
+                    <option value="menor monto">Menor monto</option>
+                    <option value="a/z">A/Z</option>
+                    <option value="z/a">Z/A</option>
+                  </select>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          </div>
+    </div>        
+  </div>        
+</section>
+    
+
+
+
+
+     <script src="./js/app.js"></script>
+</body>
+</html>
