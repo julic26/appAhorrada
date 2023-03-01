@@ -23,8 +23,7 @@
               <div class="navbar-menu">
                 <div class="navbar-end ">
                     <a class="navbar-item" href="#id-balance"><i class="fa fa-home mr-2">Balance</i></a>
-                    <a class="navbar-item"href="#id-categoria"><i class="fa fa-home mr-2">Categorias</i></a>
-                    <a class="navbar-item"href=""><i class="fa fa-home mr-2">Reportes</i></a>
+                    <a class="navbar-item"href="#id-categoria"><i  class="btnOpenModal fa fa-home mr-2">Categorias</i></a>
                 </div>
               </div>
         </nav>
@@ -108,9 +107,66 @@
                 </div>
             </section>
           </div>
+
+          <!--Editar operacion-->
+          <div class="contain-formEdit">
+            <section class="container mb-5">
+                <div class="box">
+                  <h2 class="title mt-5">Editar operacion</h2>
+                  <div class="field">
+                      <label class="label" id="edit-descripcion">Descripción</label>
+                      <div class="control">
+                        <input class="input" id="edit-input-description" type="text" >
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Monto</label>
+                      <div class="control">
+                        <input class="input" type="number" placeholder="0" id="edit-input-monto">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Tipo</label>
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select id="edit-input-select">
+                            <option value=" ">--Ingrese una opcion--</option>
+                            <option value="Gasto">Gasto</option>
+                            <option value="Ganancia">Ganancia</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Categoria</label>
+                      <div class="control">
+                        <div class="select is-fullwidth">
+                          <select id="catEdit" name="input-categoria">
+                            <option>Seleccione categoria</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Fecha</label>
+                      <div class="control">
+                        <input class="edit-input-date" type="date" id="input-datee" >
+                      </div>
+                    </div>
+                    <div class="field is-grouped is-grouped-right mt-5">
+                       <div class="control">
+                        <button class="close-modalEditOp button is-white is-light" id="btn-cancel" >Cancelar</button>
+                      </div>
+                      <div class="control">
+                          <button  type="submit" class="btn-editOp button is-warning" id="btn-submit">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+          </div>
         
         <!--Categoria-->
-        <section class="container mb-5" id="id-categoria">
+        <section class="modal-containerCategoria mb-5" id="id-categoria">
               <div class="column is-multiline">
                 <div class="box">
                   <h2 class="title mt-5">Categorias</h2>
@@ -119,12 +175,29 @@
                       <p class="control is-expanded">
                         <input class="input" type="text" id="input-categoriaAdd">
                       </p>
-                        <button class="button  is-warning" id="btn-addCategoria">Agregar</button>
+                        <button class="button  is-warning is-small m-2" id="btn-addCategoria">Agregar</button>
+                        <button type="button" class="close-modalCategoria button is-warning is-small m-2">Cancel</button>
                     </div>
                     <p id="print-categoria"></p>
                 </div>
               </div>
         </section>
+       <!--Editar Categoria-->
+        <section class="contain-modalEdit" >
+           <div class="column is-multiline">
+                  <div class="box">
+                    <form class="form">
+                      <h1 class="title mt-5">Categorias</h1>
+                        <div>
+                            <input  class="categoriaEdit" type="text" placeholder="categoria">
+                        </div>
+                        <button type="submit" class="editar-modal">Editar</button>
+                        <button type="button" class="close-modalEdit">Cancel</button>
+
+                    </form>
+                  </div>
+           </div>   
+      </section>
 
 
         <!--Balance y Filtro-->
@@ -148,28 +221,30 @@
                     
         <!--Filtros-->
        
-          <div class="box">
+          <div class="box" id="container-filtros">
             <h2 class="is-title is-size-3 mb-6 has-text-weight-bold">Filtros</h2>
             <div class="field">
 
               <label for="filtro-tipo" class="label">Tipo</label>
               <div class="control">
                 <div class="select is-fullwidth">
-                  <select id="input-select">
-                    <option value=" ">Todos</option>
+                  <select id="select-tipo">
+                    <option value="Todos">Todos</option>
                     <option value="Gasto">Gasto</option>
                     <option value="Ganancia">Ganancia</option>
                   </select>
                 </div>
               </div>
 
-              <label class="label mt-3">Categoria</label>
-              <div class="control">
-                <div class="select is-fullwidth">
-                  <select id="cat" name="input-categoria">
-                    <option>Seleccione categoria</option>
-                  </select>
-                </div>          
+              <div class="field">
+                <label class="label">Categoria</label>
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="cat1" name="input-categoria">
+                      <option disabled>Seleccione categoria</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <label class="label mt-3">Desde</label>
@@ -182,7 +257,7 @@
               <label for="filtro-ordernar" class="label">Ordenar</label>
               <div class="control">
                 <div class="select is-fullwidth">
-                  <select id="input-select">
+                  <select id="ord">
                     <option value="mas reciente">Mas reciente</option>
                     <option value="menos reciente">Menos reciente</option>
                     <option value="mayor monto">Mayor monto</option>
@@ -195,6 +270,7 @@
 
 
             </div>
+            <button class="button  is-warning" id="btn-addfiltro">Aceptar</button>
           </div>
           </div>
     </div>        
